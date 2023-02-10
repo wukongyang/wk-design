@@ -24,7 +24,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 $ yarn add wk-design
 `,paraId:0,tocIndex:0},{value:`import { Button } from 'wk-design'
 `,paraId:1,tocIndex:1},{value:`$ git clone git@github.com:Wukongyang/wk-design.git
-$ cd fe-funs
+$ cd wk-design
 $ npm i
 $ npm start
 `,paraId:2,tocIndex:2},{value:`src
