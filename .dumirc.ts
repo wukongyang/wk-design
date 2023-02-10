@@ -25,6 +25,10 @@ export default defineConfig({
   // @ts-ignore
   exportStatic: false,
   publicPath: isDev ? '/' : 'https://wukongyang.github.io/wk-design/',
+  metas: [
+    { name: 'keywords', content: 'wk-design,wkdesign,前端UI库,UI库,design,ui' },
+    { name: 'description', content: 'wk-design for FE' },
+  ],
   styles: [
     `.dumi-default-features-item {
       text-align: center;
