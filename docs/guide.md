@@ -16,7 +16,7 @@ import { Button } from 'wk-design'
 
 ```bash
 $ git clone git@github.com:Wukongyang/wk-design.git
-$ cd fe-funs
+$ cd wk-design
 $ npm i
 $ npm start
 ```
