@@ -17,15 +17,18 @@ const LineClamp: React.FC<lineClampType> = ({
   tooltip = false,
   tooltipProps,
 }) => {
-  const textContainer = useRef<HTMLDivElement>()
+  const textContainer = useRef<HTMLDivElement>(null)
   const [showText, setShowText] = useState<string>(children)
   const [tipProps, setTipProps] = useState<TooltipProps>({ placement: 'top', title: children })
   useLayoutEffect(() => {
     // 计算文字大小
-    const fontWidth = parseInt(window.getComputedStyle(textContainer.current).fontSize, 10)
+    const fontWidth = parseInt(
+      window.getComputedStyle(textContainer.current as HTMLDivElement).fontSize,
+      10,
+    )
     // 计算容器宽度
     const containerWidth =
-      width || parseInt(window.getComputedStyle(textContainer.current).width, 10)
+      width || parseInt(window.getComputedStyle(textContainer.current as HTMLDivElement).width, 10)
     //  计算指定行数最多显示字数
     const fontNum = Math.floor((line * containerWidth) / fontWidth)
     // 文本长度超过显示最多字数，显示省略号

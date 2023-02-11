@@ -97,7 +97,7 @@ const RichText = React.forwardRef<richTextRef, richTextProps>(
         },
       }
     })
-    function handleEditorChange(editorState) {
+    function handleEditorChange(editorState: EditorState) {
       console.log('handleEditorChange', editorState.toHTML())
       setEditorState(editorState)
       debounceChange(editorState.toHTML() || '')

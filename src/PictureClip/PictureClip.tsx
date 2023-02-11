@@ -61,9 +61,9 @@ const PictureClip: React.FC<pictureClipProps> = ({
   // 图片宽度
   const [imgWidth, setImgWidth] = useState<number>(0)
   // 裁剪盒子
-  const cutBox = useRef<HTMLDivElement>()
+  const cutBox = useRef<HTMLDivElement>(null)
   // 原始图片
-  const pictureDom = useRef<HTMLImageElement>()
+  const pictureDom = useRef<HTMLImageElement>(null)
   // 裁剪盒子top值
   const [cutBoxTop, setCutBoxTop] = useState<number>(0)
   // 裁剪盒子top值
@@ -91,7 +91,7 @@ const PictureClip: React.FC<pictureClipProps> = ({
   /**
    * @description 裁剪盒子定位坐标
    */
-  const getElementPosition = useDebounce(element => {
+  const getElementPosition = useDebounce((element: any) => {
     if (!element) return
     let top = element.offsetTop // 这是获取元素距父元素顶部的距离
     let left = element.offsetLeft
@@ -153,7 +153,7 @@ const PictureClip: React.FC<pictureClipProps> = ({
       }
     }
   }, [clipMethod])
-  function getBaseData(url) {
+  function getBaseData(url: string) {
     const image = new Image()
     image.src = url
     image.onload = () => {
@@ -261,7 +261,7 @@ const PictureClip: React.FC<pictureClipProps> = ({
   /**
    * @description 定位点移动
    */
-  function handlePointer(e: React.MouseEvent, type) {
+  function handlePointer(e: React.MouseEvent, type: string) {
     e.stopPropagation()
 
     // 自定义中输入尺寸和固定尺寸不允许手动调节边框
@@ -280,7 +280,7 @@ const PictureClip: React.FC<pictureClipProps> = ({
   /**
    * @description 处理裁剪盒子位置逻辑，对每个位置执行不同操作
    */
-  function resizeDown(clientX, clientY, type) {
+  function resizeDown(clientX: number, clientY: number, type: string) {
     switch (type) {
       case 'topleft':
         handleTopLeft({ clientX, clientY })
@@ -388,13 +388,13 @@ const PictureClip: React.FC<pictureClipProps> = ({
       return
     }
     const copyCanvas = document.createElement('canvas')
-    const ctx = copyCanvas.getContext('2d')
+    const ctx = copyCanvas.getContext('2d') as CanvasRenderingContext2D
     // 还原图片
     const imgH = imgHeight / comparingRule
     const imgW = imgWidth / comparingRule
     copyCanvas.height = imgH
     copyCanvas.width = imgW
-    ctx.drawImage(pictureDom.current, 0, 0, imgW, imgH)
+    ctx.drawImage(pictureDom.current as HTMLImageElement, 0, 0, imgW, imgH)
 
     const cutImage = ctx.getImageData(
       cutBoxLeft / comparingRule,
@@ -459,9 +459,9 @@ const PictureClip: React.FC<pictureClipProps> = ({
     )
     reader.readAsDataURL(file)
   }
-  function createNewCanvas(content, width, height) {
+  function createNewCanvas(content: ImageData, width: number, height: number) {
     const nCanvas = document.createElement('canvas')
-    const nCtx = nCanvas.getContext('2d')
+    const nCtx = nCanvas.getContext('2d') as CanvasRenderingContext2D
     nCanvas.width = width
     nCanvas.height = height
     nCtx.putImageData(content, 0, 0) // 将画布上指定矩形的像素数据，通过 putImageData() 方法将图像数据放回画布
@@ -480,21 +480,21 @@ const PictureClip: React.FC<pictureClipProps> = ({
   /**
    * @description 自定义宽度改变
    */
-  function customWidthChnage(value) {
-    setCustomWidth(value)
+  function customWidthChnage(value: number | null) {
+    setCustomWidth(value as number)
   }
   /**
    * @description 自定义高度改变
    */
-  function customHeightChange(value) {
-    setCustomHeight(value)
+  function customHeightChange(value: number | null) {
+    setCustomHeight(value as number)
   }
   /**
    * @description 确定自定义
    */
   function comfirmCustom() {
-    const width = customWidth * comparingRule
-    const height = customHeight * comparingRule
+    const width = (customWidth as number) * comparingRule
+    const height = (customHeight as number) * comparingRule
     setCutBoxTop(0)
     setCutBoxLeft(0)
     setCutBoxRight(imgWidth - width)

@@ -55,7 +55,6 @@ const DragList: React.FC<DragListProps> = ({ children, listDataChange }) => {
   const [lineHeight, setLineHeight] = useState<number>(0)
   const listContainer = useRef<HTMLDivElement>(null)
   const [childList, setChildList] = useState<React.ReactElement[]>([])
-  const [popoverOpen, setPopoverOpen] = useState<boolean>(false)
   // 处理childran
   const validChildren: any = useMemo(() => {
     return React.Children.map(children, child => {

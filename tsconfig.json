@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "strict": true, // 开启所有严格的类型检查
+    "alwaysStrict": true, // 在代码中注入'use strict'
+    "noImplicitAny": true, // 不允许隐式的any类型
+    "strictNullChecks": true, // 不允许把null、undefined赋值给其他类型的变量
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
